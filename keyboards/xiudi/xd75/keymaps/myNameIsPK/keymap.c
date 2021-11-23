@@ -16,12 +16,6 @@
 
 #include QMK_KEYBOARD_H
 
-#define LT_TAB  LT(_ADJ, KC_TAB)
-#define LT_BSPC LT(_NUM, KC_BSPC)
-// #define ADJ    MO(_ADJ)
-// #define SYSTEM MO(_SYSTEM)
-// #define MPASTE LSFT(KC_INSERT)
-
 /* Home row mod left */
 #define LGUI_A LGUI_T(KC_A)
 #define LALT_S LALT_T(KC_S)
@@ -33,11 +27,18 @@
 #define RALT_L    RALT_T(KC_L)
 #define RGUI_SCLN RGUI_T(KC_SCLN)
 
+#define LT_TAB  LT(_ADJ, KC_TAB)
+#define LT_BSPC LT(_NUM, KC_BSPC)
+#define LT_ESC  LT(_NAV, KC_ESC)
+// #define ADJ    MO(_ADJ)
+// #define SYSTEM MO(_SYSTEM)
+// #define MPASTE LSFT(KC_INSERT)
+
 enum layer_names {
     _ALPHA = 0,
     _NUM,
+    _NAV,
     _ADJ
-    /* _NAV, */
     /* _ADJ, */
     /* _SYM */
 };
@@ -57,11 +58,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * '--------------------------------------------------------------------------------------------------------------------------------------'
      */
     [_ALPHA] = LAYOUT_ortho_5x15( /* ALPHA */
-        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_PGUP, KC_UP,    KC_PGDN, KC_6,   KC_7,    KC_8,    KC_9,    KC_0,     KC_BSPC,
-        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LEFT, KC_DOWN,  KC_RGHT, KC_Y,   KC_U,    KC_I,    KC_O,    KC_P,     KC_QUOT,
-        KC_ESC,  LGUI_A,  LALT_S,  LSFT_D,  LCTL_F,  KC_G,    KC_MINS, KC_DEL,   KC_EQL,  KC_H,   RCTL_J,  RSFT_K,  RALT_L,  RGUI_SCLN,KC_ENT,
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LBRC, KC_BSLS,  KC_RBRC, KC_N,   KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT,
-        KC_LCTL, KC_LGUI, KC_LALT, LT_TAB,  LT_BSPC, KC_ESC,  KC_HOME, KC_INSERT,KC_END , KC_ENT, KC_SPC,  KC_LEFT, KC_DOWN, KC_UP,    KC_RGHT
+        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_PGUP, KC_UP,   KC_PGDN, KC_6,   KC_7,    KC_8,    KC_9,    KC_0,     KC_BSPC,
+        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LEFT, KC_DOWN, KC_RGHT, KC_Y,   KC_U,    KC_I,    KC_O,    KC_P,     KC_QUOT,
+        KC_ESC,  LGUI_A,  LALT_S,  LSFT_D,  LCTL_F,  KC_G,    KC_MINS, KC_DEL,  KC_EQL,  KC_H,   RCTL_J,  RSFT_K,  RALT_L,  RGUI_SCLN,KC_ENT,
+        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LBRC, KC_BSLS, KC_RBRC, KC_N,   KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT,
+        KC_LCTL, KC_LGUI, KC_LALT, LT_TAB,  LT_BSPC, LT_ESC,  KC_HOME, KC_INS,  KC_END , KC_ENT, KC_SPC,  KC_LEFT, KC_DOWN, KC_UP,    KC_RGHT
     ),
 
     /* NUMBER
@@ -85,6 +86,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, MO(_NUM),_______, _______, _______, _______, _______, KC_0,    _______, _______, _______, _______
     ),
 
+    /* NAVIGATION
+     * .--------------------------------------------------------------------------------------------------------------------------------------.
+     * |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |
+     * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+     * |        |        |        |        |        |        |        |        |        | DELETE | HOME   | INSERT | END    | PG UP  |        |
+     * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+     * |        |        |        |        |        |        |        |        |        | LEFT   | DOWN   | UP     | RIGHT  | PG DN  |        |
+     * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+     * |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |
+     * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+     * |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |
+     * '--------------------------------------------------------------------------------------------------------------------------------------'
+     */
+    [_NAV] = LAYOUT_ortho_5x15( /* NAVIGATION */
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_DEL,  KC_HOME, KC_INS,  KC_END,  KC_PGUP, _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_PGDN, _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, MO(_NAV),_______, _______, _______, _______, _______, _______, _______, _______, _______
+    ), 
+
     /* ADJUST
      * .--------------------------------------------------------------------------------------------------------------------------------------.
      * |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |
@@ -101,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_ADJ] = LAYOUT_ortho_5x15( /* ADJUST */
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
         _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   _______, _______, _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
-        _______, KC_BRIU, KC_VOLU, KC_MUTE, KC_VOLU, KC_F11,  _______, _______, _______, KC_F12,  KC_MPRV, KC_MPLY, KC_MNXT, _______, _______,
+        _______, KC_BRIU, KC_VOLD, KC_MUTE, KC_VOLU, KC_F11,  _______, _______, _______, KC_F12,  KC_MPRV, KC_MPLY, KC_MNXT, _______, _______,
         _______, KC_BRID, _______, _______, _______, RESET,   _______, _______, _______, KC_CAPS, _______, _______, _______, _______, _______,
         _______, _______, _______, MO(_ADJ),_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     )
