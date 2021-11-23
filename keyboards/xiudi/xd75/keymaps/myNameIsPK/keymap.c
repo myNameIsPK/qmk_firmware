@@ -27,20 +27,18 @@
 #define RALT_L    RALT_T(KC_L)
 #define RGUI_SCLN RGUI_T(KC_SCLN)
 
-#define LT_TAB LT(_NUM, KC_TAB)
-#define LT_ENT LT(_NAV, KC_ENT)
-#define LT_ESC LT(_ADJ, KC_ESC)
-// #define ADJ    MO(_ADJ)
-// #define SYSTEM MO(_SYSTEM)
-// #define MPASTE LSFT(KC_INSERT)
+/* Dual fucction key */
+#define LT_TAB LT(_ADJ, KC_TAB)
+#define LT_ENT LT(_SYM, KC_ENT)
+#define LT_ESC LT(_NUM, KC_ESC)
+#define LT_SPC LT(_NAV, KC_SPC)
 
 enum layer_names {
     _ALPHA = 0,
     _NUM,
     _NAV,
-    _ADJ
-    /* _ADJ, */
-    /* _SYM */
+    _ADJ,
+    _SYM
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -54,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------------------------+--------|
      * | LSHIFT | Z      | X      | C      | V      | B      | [      | \      | ]      | N      | M      | ,      | .      | /      | RSHIFT |
      * |--------+--------+--------+--------+--------+-----------------+--------+--------+--------+--------+-----------------+--------+--------|
-     * | LCTRL  | LGUI   | LALT   | ESC_ADJ| TAB_NUM| BACKSP | HOME   | INSERT | END    | SPACE  | ENT_NAV| LEFT   | DOWN   | UP     | RIGHT  |
+     * | LCTRL  | LGUI   | LALT   | TAB_ADJ| ESC_NUM| BACKSP | HOME   | INSERT | END    | SPC_SYM| ENT_NAV| LEFT   | DOWN   | UP     | RIGHT  |
      * '--------------------------------------------------------------------------------------------------------------------------------------'
      */
     [_ALPHA] = LAYOUT_ortho_5x15( /* ALPHA */
@@ -62,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LEFT, KC_DOWN, KC_RGHT, KC_Y,   KC_U,    KC_I,    KC_O,    KC_P,     KC_QUOT,
         KC_ESC,  LGUI_A,  LALT_S,  LSFT_D,  LCTL_F,  KC_G,    KC_MINS, KC_DEL,  KC_EQL,  KC_H,   RCTL_J,  RSFT_K,  RALT_L,  RGUI_SCLN,KC_ENT,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LBRC, KC_BSLS, KC_RBRC, KC_N,   KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT,
-        KC_LCTL, KC_LGUI, KC_LALT, LT_ESC,  LT_TAB,  KC_BSPC, KC_HOME, KC_INS,  KC_END , KC_SPC, LT_ENT,  KC_LEFT, KC_DOWN, KC_UP,    KC_RGHT
+        KC_LCTL, KC_LGUI, KC_LALT, LT_TAB,  LT_ESC,  KC_BSPC, KC_HOME, KC_INS,  KC_END , LT_SPC, LT_ENT,  KC_LEFT, KC_DOWN, KC_UP,    KC_RGHT
     ),
 
     /* NUMBER
@@ -86,6 +84,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_0,    _______, _______, _______, _______
     ),
 
+    /* SYMBOL
+     * .--------------------------------------------------------------------------------------------------------------------------------------.
+     * |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |
+     * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+     * |        | `      | ~      | {      | }      | ^      |        |        |        | $      | [      | ]      | _      | +      |        |
+     * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+     * |        | :      | &      | <      | >      | |      |        |        |        | *      | (      | )      | -      | =      |        |
+     * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+     * |        | !      | @      | %      | #      | \      |        |        |        | /      | "      | ,      | .      | '      |        |
+     * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+     * |        |        |        |        |        |        |        |        |        |        | SYM    |        |        |        |        |
+     * '--------------------------------------------------------------------------------------------------------------------------------------'
+     */
+    /* FIXME: mod-tap break shifted symbol */
+    [_SYM] = LAYOUT_ortho_5x15( /* SYMBOL */
+        /* _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, */
+        /* _______, KC_GRV,  KC_TILD, KC_LCBR, KC_RCBR, KC_CIRC, _______, _______, _______, KC_DLR,  KC_LBRC, KC_RBRC, KC_UNDS, KC_PLUS, _______, */
+        /* _______, LGUI_T(KC_COLN),LALT_T(KC_AMPR),LSFT_T(KC_GT),LCTL_T(KC_LT), KC_PIPE, */
+        /*       j                    _______, _______, _______, KC_ASTR,RCTL_T(KC_LPRN),RSFT_T(KC_RPRN),RALT_T(KC_MINS),RGUI_T(KC_EQL), _______, */
+        /* _______, KC_EXLM, KC_AT,   KC_PERC, KC_HASH, KC_BSLS, _______, _______, _______, KC_SLSH, KC_DQUO, KC_COMM, KC_DOT,  KC_QUOT, _______, */
+        /* _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ */
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, KC_GRV,  KC_TILD, KC_LCBR, KC_RCBR, KC_CIRC, _______, _______, _______, KC_DLR,  KC_LBRC, KC_RBRC, KC_UNDS, KC_PLUS, _______,
+        _______, KC_COLN, KC_AMPR, KC_GT,   KC_LT,   KC_PIPE, _______, _______, _______, KC_ASTR, KC_LPRN, KC_RPRN, KC_MINS, KC_EQL,  _______,
+        _______, KC_EXLM, KC_AT,   KC_PERC, KC_HASH, KC_BSLS, _______, _______, _______, KC_SLSH, KC_DQUO, KC_COMM, KC_DOT,  KC_QUOT, _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    ),
+
     /* NAVIGATION
      * .--------------------------------------------------------------------------------------------------------------------------------------.
      * |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |
@@ -96,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
      * |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |
      * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
-     * |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |
+     * |        |        |        |        |        |        |        |        |        | NAV    |        |        |        |        |        |
      * '--------------------------------------------------------------------------------------------------------------------------------------'
      */
     [_NAV] = LAYOUT_ortho_5x15( /* NAVIGATION */
