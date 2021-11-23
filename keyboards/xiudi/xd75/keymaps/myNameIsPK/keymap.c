@@ -27,9 +27,9 @@
 #define RALT_L    RALT_T(KC_L)
 #define RGUI_SCLN RGUI_T(KC_SCLN)
 
-#define LT_TAB  LT(_ADJ, KC_TAB)
-#define LT_BSPC LT(_NUM, KC_BSPC)
-#define LT_ESC  LT(_NAV, KC_ESC)
+#define LT_TAB LT(_NUM, KC_TAB)
+#define LT_ENT LT(_NAV, KC_ENT)
+#define LT_ESC LT(_ADJ, KC_ESC)
 // #define ADJ    MO(_ADJ)
 // #define SYSTEM MO(_SYSTEM)
 // #define MPASTE LSFT(KC_INSERT)
@@ -54,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------------------------+--------|
      * | LSHIFT | Z      | X      | C      | V      | B      | [      | \      | ]      | N      | M      | ,      | .      | /      | RSHIFT |
      * |--------+--------+--------+--------+--------+-----------------+--------+--------+--------+--------+-----------------+--------+--------|
-     * | LCTRL  | LGUI   | LALT   | TAB    | NUM_BSP| ESC    | HOME   | INSERT | END    | ENTER  | SYM_SPC| LEFT   | DOWN   | UP     | RIGHT  |
+     * | LCTRL  | LGUI   | LALT   | ESC_ADJ| TAB_NUM| BACKSP | HOME   | INSERT | END    | SPACE  | ENT_NAV| LEFT   | DOWN   | UP     | RIGHT  |
      * '--------------------------------------------------------------------------------------------------------------------------------------'
      */
     [_ALPHA] = LAYOUT_ortho_5x15( /* ALPHA */
@@ -62,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LEFT, KC_DOWN, KC_RGHT, KC_Y,   KC_U,    KC_I,    KC_O,    KC_P,     KC_QUOT,
         KC_ESC,  LGUI_A,  LALT_S,  LSFT_D,  LCTL_F,  KC_G,    KC_MINS, KC_DEL,  KC_EQL,  KC_H,   RCTL_J,  RSFT_K,  RALT_L,  RGUI_SCLN,KC_ENT,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LBRC, KC_BSLS, KC_RBRC, KC_N,   KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT,
-        KC_LCTL, KC_LGUI, KC_LALT, LT_TAB,  LT_BSPC, LT_ESC,  KC_HOME, KC_INS,  KC_END , KC_ENT, KC_SPC,  KC_LEFT, KC_DOWN, KC_UP,    KC_RGHT
+        KC_LCTL, KC_LGUI, KC_LALT, LT_ESC,  LT_TAB,  KC_BSPC, KC_HOME, KC_INS,  KC_END , KC_SPC, LT_ENT,  KC_LEFT, KC_DOWN, KC_UP,    KC_RGHT
     ),
 
     /* NUMBER
@@ -83,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______, _______, _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_PLUS,RCTL_T(KC_4),RSFT_T(KC_5),RALT_T(KC_6),RGUI_T(KC_MINS), _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_ASTR, KC_1,    KC_2,    KC_3,    KC_SLSH, _______,
-        _______, _______, _______, _______, MO(_NUM),_______, _______, _______, _______, _______, KC_0,    _______, _______, _______, _______
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_0,    _______, _______, _______, _______
     ),
 
     /* NAVIGATION
@@ -104,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_DEL,  KC_HOME, KC_INS,  KC_END,  KC_PGUP, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_PGDN, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______, MO(_NAV),_______, _______, _______, _______, _______, _______, _______, _______, _______
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ), 
 
     /* ADJUST
@@ -125,6 +125,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   _______, _______, _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
         _______, KC_BRIU, KC_VOLD, KC_MUTE, KC_VOLU, KC_F11,  _______, _______, _______, KC_F12,  KC_MPRV, KC_MPLY, KC_MNXT, _______, _______,
         _______, KC_BRID, _______, _______, _______, RESET,   _______, _______, _______, KC_CAPS, _______, _______, _______, _______, _______,
-        _______, _______, _______, MO(_ADJ),_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     )
 };
