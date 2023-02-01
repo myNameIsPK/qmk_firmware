@@ -21,7 +21,7 @@
 #define LGUI_A LGUI_T(KC_A)
 #define LALT_S LALT_T(KC_S)
 #define LSFT_D LSFT_T(KC_D)
-#define LCTL_F LCTL_T(KC_F)
+#define LCTL__T LCTL_T(KC_T)
 /* Home row mod right */
 #define RCTL_J    RCTL_T(KC_N)
 #define RSFT_K    RSFT_T(KC_E)
@@ -68,9 +68,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_ALPHA] = LAYOUT_ortho_5x15( /* ALPHA */
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_PGUP, KC_INS,  KC_PGDN, KC_6,   KC_7,    KC_8,    KC_9,    KC_0,     KC_BSPC,
-        KC_TAB,  KC_Q,    KC_W,    KC_J,    KC_R,    KC_T,    KC_LEFT, KC_DEL,  KC_RGHT, KC_Y,   KC_U,    KC_I,    KC_O,    KC_P,     KC_QUOT,
-        KC_ESC,  LGUI_A,  LALT_S,  LSFT_D,  LCTL_F,  KC_G,    KC_MINS, KC_PSCR, KC_EQL,  KC_M,   RCTL_J,  RSFT_K,  RALT_L,  RGUI_SCLN,KC_ENT,
-        KC_LSFT, LSG_Z,   KC_X,    KC_C,    KC_V,    KC_B,    KC_LBRC, KC_BSLS, KC_RBRC, KC_K,   KC_H,    KC_COMM, KC_DOT,  RSG_SLSH, KC_RSFT,
+        KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_R,    KC_B,    KC_LEFT, KC_DEL,  KC_RGHT, KC_Y,   KC_U,    KC_I,    KC_O,    KC_P,     KC_QUOT,
+        KC_ESC,  LGUI_A,  LALT_S,  LSFT_D,  LCTL__T, KC_G,    KC_MINS, KC_PSCR, KC_EQL,  KC_M,   RCTL_J,  RSFT_K,  RALT_L,  RGUI_SCLN,KC_ENT,
+        KC_LSFT, LSG_Z,   KC_X,    KC_C,    KC_V,    KC_J,    KC_LBRC, KC_BSLS, KC_RBRC, KC_K,   KC_H,    KC_COMM, KC_DOT,  RSG_SLSH, KC_RSFT,
         KC_LCTL, KC_LGUI, KC_LALT, KC_TAB,  LT_ESC,  LT_SPC,  LT_TAB,  KC_CAPS, KC_DEL,  LT_BSPC,LT_ENT,  KC_LEFT, KC_DOWN, KC_UP,    KC_RGHT
     ),
 
@@ -201,9 +201,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_GAME] = LAYOUT_ortho_5x15( /* GAME */
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        KC_ESC,  KC_Q,    KC_W,    KC_J,    KC_R,    KC_T,    _______, _______, _______, KC_Y,   KC_U,    KC_I,    KC_O,    KC_P,     _______,
-        KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    _______, _______, _______, KC_H,   KC_J,    KC_K,    KC_L,    KC_SCLN,  _______,
-        _______, LSG_Z,   KC_X,    KC_C,    KC_V,    KC_B,    _______, _______, _______, KC_K,   KC_M,    KC_COMM, KC_DOT,  RSG_SLSH, TG(_GAME),
+        _______, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    _______, _______, _______, KC_Y,   KC_U,    KC_I,    KC_O,    KC_P,     _______,
+        _______, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    _______, _______, _______, KC_H,   KC_J,    KC_K,    KC_L,    KC_SCLN,  _______,
+        _______, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    _______, _______, _______, KC_N,   KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  TG(_GAME),
         _______, _______, _______, KC_LCTL, KC_SPC,  KC_SPC,  _______, _______, _______, _______, _______, _______, _______, _______, _______
     ) 
 };
